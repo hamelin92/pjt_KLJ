@@ -15,6 +15,21 @@ const routes = [
     component: MainView
   },
   {
+    path: '/login',
+    name: 'login',
+    component: LoginView
+  },
+  {
+    path: '/logout',
+    name: 'logout',
+    component: LogoutView
+  },
+  {
+    path: '/signup',
+    name: 'signup',
+    component: SignupView
+  },
+  {
     path: '/OneToFifty',
     name: 'onetofifty',
     component: OneToFifty
