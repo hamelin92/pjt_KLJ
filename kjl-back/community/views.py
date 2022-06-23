@@ -66,7 +66,7 @@ def comment_list_or_create(request,article_pk):
         if serializer.is_valid(raise_exception=True):
             serializer.save(article=article, user=request.user)
             ### 여 아래부분 이해 안감
-            comments = article.comments.all()
+            comments = article.comment_set.all()
             serializer = CommentSerializer(comments, many=True)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
@@ -85,14 +85,14 @@ def comment_update_or_delete(request,article_pk,comment_pk):
             serializer = CommentSerializer(instance=comment, data=request.data)
             if serializer.is_valid(raise_exception=True):
                 serializer.save()
-                comments = article.comments.all()
+                comments = article.comment_set.all()
                 serializer = CommentSerializer(comments, many=True)
                 return Response(serializer.data)
             
     def comment_delete():
         if request.user == comment.user :
             comment.delete()
-            comments = article.comments.all()
+            comments = article.comment_set.all()
             serializer = CommentSerializer(comments, many=True)
             return Response(serializer.data)
     
