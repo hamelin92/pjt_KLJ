@@ -1,36 +1,8 @@
 <template>
   <div>
-    <div class="top">
-      <div class="game_top">
-        <b-dropdown id="dropdown-1" text="게임들" class="m-md-2">
-          <b-dropdown-item >
-              <router-link to="/">홈</router-link> 
-          </b-dropdown-item>
-          <b-dropdown-item>
-            <router-link to="/OneToFifty">1to50</router-link>
-          </b-dropdown-item>
-          <b-dropdown-item>
-            <router-link to="/OmokGame">오목</router-link>
-          </b-dropdown-item>
-          <b-dropdown-item>
-            <router-link to="/SingingQuiz">노래퀴즈</router-link>
-          </b-dropdown-item>
-          <b-dropdown-divider></b-dropdown-divider>
-          <b-dropdown-item active>Active action</b-dropdown-item>
-          <b-dropdown-item disabled>Disabled action</b-dropdown-item>
-        </b-dropdown>
-      </div>
-      <div class="title_top">
-        <div class="main_title">
-          미니게임천국
-        </div>
-      </div>
-      <div class="account_top">
-        로그인하는 유저
-      </div>
-    </div>
     <div class="mid">
       <div class="community">
+        <article-list></article-list>
         게시판
       </div>
     </div>
@@ -38,9 +10,13 @@
 </template>
 
 <script>
+import ArticleList from '@/components/ArticleList.vue'
 
 export default {
   name: 'MainView',
+  components: {
+    ArticleList,
+  }
   
 }
 </script>

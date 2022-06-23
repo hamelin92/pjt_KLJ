@@ -1,34 +1,5 @@
 <template>
   <div>
-    <div class="top">
-      <div class="game_top">
-        <b-dropdown id="dropdown-1" text="게임들" class="m-md-2">
-          <b-dropdown-item >
-              <router-link to="/">홈</router-link> 
-          </b-dropdown-item>
-          <b-dropdown-item>
-            <router-link to="/OneToFifty">1to50</router-link>
-          </b-dropdown-item>
-          <b-dropdown-item>
-            <router-link to="/OmokGame">오목</router-link>
-          </b-dropdown-item>
-          <b-dropdown-item>
-            <router-link to="/SingingQuiz">노래퀴즈</router-link>
-          </b-dropdown-item>
-          <b-dropdown-divider></b-dropdown-divider>
-          <b-dropdown-item active>Active action</b-dropdown-item>
-          <b-dropdown-item disabled>Disabled action</b-dropdown-item>
-        </b-dropdown>
-      </div>
-      <div class="title_top">
-        <div class="main_title">
-          미니게임천국
-        </div>
-      </div>
-      <div class="account_top">
-        로그인하는 유저
-      </div>
-    </div>
     <div class="mid">
       <div class="blank">
         빈 자리
@@ -38,10 +9,14 @@
           게임 타이틀
         </div>
         <div class="game_page">
+          <one-to-fifty></one-to-fifty>
+          <omok-game></omok-game>
+          <song-quiz></song-quiz>
           게임 들어가는 자리
         </div>
       </div>
       <div class="ranking">
+        <rank-list></rank-list>
         랭킹 들어가는 자리
       </div>
     </div>
@@ -49,9 +24,19 @@
 </template>
 
 <script>
+import OneToFifty from '@/components/OneToFifty.vue'
+import OmokGame from '@/components/OmokGame.vue'
+import SongQuiz from '@/components/SongQuiz.vue'
+import RankList from '@/components/RankList.vue'
 
 export default {
-  name: 'MainView',
+  name: 'GameView',
+  components: {
+    OneToFifty,
+    OmokGame,
+    SongQuiz,
+    RankList,
+  }
   
 }
 </script>
