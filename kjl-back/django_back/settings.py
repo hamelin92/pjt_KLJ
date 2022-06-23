@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -33,6 +34,8 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # local apps
     'accounts',
+    'community',
+    'games',
 
     #3rd
     'django_extensions',
@@ -167,3 +170,10 @@ REST_FRAMEWORK = {
         # 'rest_framework.permissions.IsAuthenticated',  # => 기본적으로 인증받아야 사용
     ],
 }
+
+# media 파일 경로
+
+# Default primary key field type
+# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
