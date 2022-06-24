@@ -3,6 +3,7 @@ from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from .models import Article,Comment
 
+
 class ArticleSerializer(serializers.ModelSerializer):
     class UserSerializer(serializers.ModelSerializer) :
         class Meta:
@@ -10,7 +11,21 @@ class ArticleSerializer(serializers.ModelSerializer):
             fields = ('username',)
     
     user = UserSerializer(read_only=True)
-    image = serializers.ImageField(use_url=True, required=False, default='community/None.jpg')
+    image = serializers.ImageField(use_url=True, required=False)
+
+    class CommentSerializer(serializers.ModelSerializer) :
+        class UserSerializer(serializers.ModelSerializer) :
+            class Meta:
+                model = get_user_model()
+                fields = ('username',)
+
+        user = UserSerializer(read_only=True)
+
+        class Meta :
+            model = Comment
+            fields = ('user','content','created_at','updated_at')
+
+    comment_set = CommentSerializer(read_only=True, many=True)
     
     class Meta :
         model = Article
@@ -27,7 +42,6 @@ class ArticleListSerializer(serializers.ModelSerializer):
     class Meta :
         model = Article
         fields = '__all__'
-
 
 class CommentSerializer(serializers.ModelSerializer):
     class UserSerializer(serializers.ModelSerializer):
