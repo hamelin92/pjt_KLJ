@@ -58,8 +58,8 @@ def article_detail_or_update_or_delete(request, article_pk):
 def comment_list_or_create(request,article_pk):
     article = get_object_or_404(Article,pk=article_pk)
     def comment_list():
-        comments = get_list_or_404(Comment)
-        serializer = CommentSerializer(data=comments)
+        comments = article.comment_set.all()
+        serializer = CommentSerializer(data=comments, many=True)
         return Response(serializer.data)
     def comment_create():
         serializer = CommentSerializer(data=request.data)
