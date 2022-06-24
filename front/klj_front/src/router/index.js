@@ -31,11 +31,41 @@ const routes = [
   //   component: SingingQuiz
   // },
   {
+    path: '/login',
+    name: 'login',
+    component: LoginView
+  },
+  {
+    path: '/logout',
+    name: 'logout',
+    component: LogoutView
+  },
+  {
+    path: '/signup',
+    name: 'signup',
+    component: SignupView
+  },
+  {
+    path: '/OneToFifty',
+    name: 'onetofifty',
+    component: OneToFifty
+  },
+  {
+    path: '/OmokGame',
+    name: 'omokgame',
+    component: OmokGame
+  },
+  {
+    path: '/SingingQuiz',
+    name: 'singingquiz',
+    component: SingingQuiz
+  },
+  {
     path: '/games',
     name: 'gameview',
     component: GameView
+
   },
-  
 ]
 
 const router = new VueRouter({
