@@ -9,14 +9,12 @@
           게임 타이틀
         </div>
         <div class="game_page">
-          <one-to-fifty></one-to-fifty>
-          <omok-game></omok-game>
-          <song-quiz></song-quiz>
+         <game-list></game-list>
           게임 들어가는 자리
         </div>
       </div>
       <div class="ranking">
-        <rank-list></rank-list>
+       
         랭킹 들어가는 자리
       </div>
     </div>
@@ -24,18 +22,12 @@
 </template>
 
 <script>
-import OneToFifty from '@/components/OneToFifty.vue'
-import OmokGame from '@/components/OmokGame.vue'
-import SongQuiz from '@/components/SongQuiz.vue'
-import RankList from '@/components/RankList.vue'
+import GameList from '@/views/GameList.vue'
 
 export default {
   name: 'GameView',
   components: {
-    OneToFifty,
-    OmokGame,
-    SongQuiz,
-    RankList,
+   GameList,
   }
   
 }
