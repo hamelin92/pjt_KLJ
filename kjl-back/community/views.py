@@ -53,27 +53,18 @@ def article_detail_or_update_or_delete(request, article_pk):
     elif request.method == 'DELETE':
         return article_delete()
 
-@api_view(['GET','POST'])
+@api_view(['POST'])
 # comment는 list, create, update, delete
-def comment_list_or_create(request,article_pk):
+def comment_create(request, article_pk):
     article = get_object_or_404(Article,pk=article_pk)
-    def comment_list():
+    serializer = CommentSerializer(data=request.data)
+    if serializer.is_valid(raise_exception=True):
+        serializer.save(article=article, user=request.user)
+        ### 여 아래부분 이해 안감
         comments = article.comment_set.all()
-        serializer = CommentSerializer(data=comments, many=True)
-        return Response(serializer.data)
-    def comment_create():
-        serializer = CommentSerializer(data=request.data)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save(article=article, user=request.user)
-            ### 여 아래부분 이해 안감
-            comments = article.comment_set.all()
-            serializer = CommentSerializer(comments, many=True)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        serializer = CommentSerializer(comments, many=True)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-    if request.method == 'GET':
-        return comment_list()
-    elif request.method == 'POST':
-        return comment_create()
 
 @api_view(['PUT','DELETE'])
 def comment_update_or_delete(request,article_pk,comment_pk):
