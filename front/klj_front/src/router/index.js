@@ -3,18 +3,14 @@ import VueRouter from 'vue-router'
 
 import MainView from '@/views/MainView.vue'
 import GameView from '@/views/GameView.vue'
-// import OmokGame from '@/views/ArticleDetailView.vue'
-// import SingingQuiz from '@/views/SingingQuiz.vue'
-// import OneToFifty from '@/components/OneToFifty.vue'
+
+import LoginView from '@/views/LoginView.vue'
+import LogoutView from '@/views/LogoutView.vue'
+import SignupView from '@/views/SignupView.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
-    name: 'mainview',
-    component: MainView
-  },
   // {
   //   path: '/OneToFifty',
   //   name: 'onetofifty',
@@ -26,10 +22,15 @@ const routes = [
   //   component: OmokGame
   // },
   // {
-  //   path: '/SingingQuiz',
-  //   name: 'singingquiz',
-  //   component: SingingQuiz
+  //   path: '/SongQuiz',
+  //   name: 'Songquiz',
+  //   component: SongQuiz
   // },
+  {
+    path: '/',
+    name: 'mainview',
+    component: MainView
+  },
   {
     path: '/login',
     name: 'login',
@@ -44,21 +45,6 @@ const routes = [
     path: '/signup',
     name: 'signup',
     component: SignupView
-  },
-  {
-    path: '/OneToFifty',
-    name: 'onetofifty',
-    component: OneToFifty
-  },
-  {
-    path: '/OmokGame',
-    name: 'omokgame',
-    component: OmokGame
-  },
-  {
-    path: '/SingingQuiz',
-    name: 'singingquiz',
-    component: SingingQuiz
   },
   {
     path: '/games',
