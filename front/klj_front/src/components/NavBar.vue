@@ -8,7 +8,7 @@
                 <router-link to="/" class="fw-bold fs-5"><div>홈</div></router-link> 
             </b-dropdown-item>
             <b-dropdown-item>
-              <router-link to="/games" class="fw-bold fs-5"><div @click="getGame('1to50')">1to50</div></router-link>
+              <router-link to="/games" class="fw-bold fs-5"><div @click="getGame('1to50main')">1to50</div></router-link>
             </b-dropdown-item>
             <b-dropdown-item>
               <router-link to="/games" class="fw-bold fs-5"><div @click="getGame('오목')">오목</div></router-link>

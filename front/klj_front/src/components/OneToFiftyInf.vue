@@ -1,6 +1,6 @@
 <template>
   <div>
-    1to50
+    
   </div>
 </template>
 
