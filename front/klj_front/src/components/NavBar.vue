@@ -7,8 +7,14 @@
             <b-dropdown-item >
                 <router-link to="/" class="fw-bold fs-5"><div>홈</div></router-link> 
             </b-dropdown-item>
-            <b-dropdown-item>
-              <router-link to="/games" class="fw-bold fs-5"><div @click="getGame('1to50main')">1to50</div></router-link>
+            <b-dropdown-item href="/games/1to50" class="fw-bold fs-5">
+              <div class="onetofifty">
+                1to50
+                <!-- <router-link :to="{ name : 'gameview', params : {gamename : '1to50'}  }" class="fw-bold fs-5"><span @click="[getReset(),getGame('1to50')]"> 1to50 </span></router-link> -->
+                <!-- <a href="https://www.google.com" class="fw-bold fs-5"><span> 1to50 </span></a> -->
+                <!-- <router-link to="/games" class="fw-bold fs-5"><span @click="getGame('')"> 1toInfinity </span></router-link> -->
+              </div>
+             
             </b-dropdown-item>
             <b-dropdown-item>
               <router-link to="/games" class="fw-bold fs-5"><div @click="getGame('오목')">오목</div></router-link>
@@ -42,7 +48,10 @@
       ...mapGetters(['isLoggedIn'])
     },
     methods: {
-      ...mapActions(['getGame',])
+      ...mapActions(['getGame',]),
+      getReset(){
+        this.$router.push('gameview', {gamename: '1to50'})
+      }
     }
 
   }
@@ -61,5 +70,9 @@
 }
 .account_top{
   width : 10vw;
+}
+.onetofifty{
+  display: flex;
+  flex-direction: row;
 }
 </style>

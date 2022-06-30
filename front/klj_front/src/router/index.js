@@ -8,6 +8,7 @@ import LoginView from '@/views/LoginView.vue'
 import LogoutView from '@/views/LogoutView.vue'
 import SignupView from '@/views/SignupView.vue'
 
+// import OneToFiftyStandard from '@/components/OneToFiftyStandard.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -46,12 +47,15 @@ const routes = [
     name: 'signup',
     component: SignupView
   },
+
   {
-    path: '/games',
+    path: '/games/:gamename',
     name: 'gameview',
     component: GameView
 
   },
+  
+
 ]
 
 const router = new VueRouter({

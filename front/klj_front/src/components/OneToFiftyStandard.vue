@@ -126,9 +126,8 @@ export default {
     },
   },
   created() {
-    document.removeEventListener("keydown", this.eventFunc);
-    document.removeEventListener("keyup", this.eventFunc2)
-    return this.clearState
+    this.clearState()
+    this.gameStart()
   },
   computed: {
     minutes: function() {
