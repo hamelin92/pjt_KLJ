@@ -1,18 +1,18 @@
 <template>
 <div>
   <div>
-    <div v-if="gameName == '1to50main'">
+    <div v-if="this.gameName == '1to50main'">
       <one-to-fifty-main></one-to-fifty-main>
     </div>
-    <div v-if="gameName == '1to50standard'">
+    <div v-if="this.gameName == '1to50'">
       <one-to-fifty-standard></one-to-fifty-standard>
     </div>
     <div></div>
   </div>
-  <div v-if="gameName == '오목'">
+  <div v-if="this.gameName == '오목'">
     <omok-game></omok-game>
   </div>
-  <div v-if="gameName == '노래퀴즈'">
+  <div v-if="this.gameName == '노래퀴즈'">
     <song-quiz></song-quiz>
   </div>
 </div>
@@ -25,7 +25,7 @@ import OmokGame from '@/components/OmokGame.vue'
 import SongQuiz from '@/components/SongQuiz.vue'
 // import RankList from '@/components/RankList.vue'
 
-import { mapGetters } from 'vuex'
+// import { mapGetters } from 'vuex'
 export default {
   name: 'GameList',
   components: {
@@ -36,8 +36,13 @@ export default {
     // RankList,
   },
   computed: {
-    ...mapGetters(['gameName',])
-  }
+    // ...mapGetters(['gameName',]),
+    gameName: function(){
+      const name = this.$route.params.gamename
+      return name
+    }
+  },
+  
 }
 </script>
 

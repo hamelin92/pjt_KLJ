@@ -29,9 +29,10 @@ export default {
   },
   computed: {
     gamename(){
-      return this.$store.state.games.gameName
+      return this.$route.params.gamename
     } 
   },
+  
 
 }
 </script>
