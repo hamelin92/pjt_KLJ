@@ -2,15 +2,13 @@
   <div>
     <div class="mid">
       <div class="blank">
-        빈 자리
       </div>
       <div class="game">
         <div class="game_title">
-          게임 타이틀
+          {{this.gamename}}
         </div>
         <div class="game_page">
          <game-list></game-list>
-          게임 들어가는 자리
         </div>
       </div>
       <div class="ranking">
@@ -28,8 +26,13 @@ export default {
   name: 'GameView',
   components: {
    GameList,
-  }
-  
+  },
+  computed: {
+    gamename(){
+      return this.$store.state.games.gameName
+    } 
+  },
+
 }
 </script>
 
@@ -80,9 +83,13 @@ export default {
   margin-top : 50px;
 }
 .game_page{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
   border : 2px solid brown;
-  width : 60vw;
-  height : 50vh;
+  width : 65vw;
+  height : 55vh;
   margin-top : 50px;
 }
 .ranking{

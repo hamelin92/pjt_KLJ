@@ -1,7 +1,13 @@
 <template>
 <div>
-  <div v-if="gameName == '1to50'">
-    <one-to-fifty></one-to-fifty>
+  <div>
+    <div v-if="gameName == '1to50main'">
+      <one-to-fifty-main></one-to-fifty-main>
+    </div>
+    <div v-if="gameName == '1to50standard'">
+      <one-to-fifty-standard></one-to-fifty-standard>
+    </div>
+    <div></div>
   </div>
   <div v-if="gameName == '오목'">
     <omok-game></omok-game>
@@ -13,7 +19,8 @@
 </template>
 
 <script>
-import OneToFifty from '@/components/OneToFifty.vue'
+import OneToFiftyMain from '@/components/OneToFiftyMain.vue'
+import OneToFiftyStandard from '@/components/OneToFiftyStandard.vue'
 import OmokGame from '@/components/OmokGame.vue'
 import SongQuiz from '@/components/SongQuiz.vue'
 // import RankList from '@/components/RankList.vue'
@@ -22,7 +29,8 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'GameList',
   components: {
-    OneToFifty,
+    OneToFiftyMain,
+    OneToFiftyStandard,
     OmokGame,
     SongQuiz,
     // RankList,
