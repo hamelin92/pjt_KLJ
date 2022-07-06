@@ -1,15 +1,13 @@
 <template>
 <div class="stan">
   <div class="stan-main">
-    <h2>Standard Mode</h2>
-    <div style="background-color: brown; font-weight: bold;" @click="[gameStart(), startTimer()]">START</div>
-    {{this.title}}
-    {{this.minutes}}
-    {{this.seconds}}
-    <input type="button" @click="startTimer" value="start">
-    <input type="button" @click="resetTimer" value="reset">
-    <input type="button" @click="stopTimer" value="stop">
-    <h1> MISS:{{ $store.state.games.miss}} </h1>
+    <h2>1 to 50</h2>
+    <div class="text-decoration-underline fw-bold text-primary" @click="[gameStart()]">[START]</div>
+    <div class="fw-bold fs-3">
+      {{this.seconds}}.{{this.mseconds}} 초
+    </div>
+
+    <h3> MISS:{{ $store.state.games.miss}} </h3>
     <div>
       <span class="test" id="q">
         <span style="font-weight: bold; font-size: 2rem">{{ $store.state.games.numbers_now['q']}}</span>
@@ -49,7 +47,7 @@
        <button class="back" @click="[getGame('1to50main'), clearState(), clearEvent()]">Back</button>
     </h3>
     <h3>
-      <button class="restart" @click="[gameStart(), resetTimer(), startTimer()]">Restart</button>
+      <button class="restart" @click="[gameStart()]">Restart</button>
     </h3>
   </div>
 </div>
@@ -64,7 +62,7 @@ export default {
     return {
       title: 'Timer',
       timer: null,
-      totalTime: (1 * 60),
+      totalTime: (0 * 6000),
       resetButton: false, 
       keyDown: function (e) {
         const key = document.getElementById(e.key);
@@ -77,9 +75,11 @@ export default {
           this.$store.commit('NUMBER_SETTER', e.key)
         } else if ((e.key in this.$store.state.games.numbers_now)) {
           this.$store.commit('COUNT_MISS')
+          this.totalTime += 100
         }
         if (this.$store.state.games.number == 50) {
           this.$store.commit('STANDARD_FINISHED')
+          this.stopTimer()
           console.log('finished')
         }
       }
@@ -88,6 +88,8 @@ export default {
   methods: {
     ...mapActions(['clearState', 'getGame']),
     gameStart() { 
+      this.resetTimer()
+      this.startTimer()
       this.$store.commit('START')
       this.$store.commit('SETTER')
       this.$store.commit('STAN_NEXT_NUMS')
@@ -95,7 +97,7 @@ export default {
       document.addEventListener("keyup", this.keyUp)
     },
     startTimer: function() {
-      this.timer = setInterval(() => this.countdown(), 1000);
+      this.timer = setInterval(() => this.countup(), 10);
       this.resetButton = true;
     },
     stopTimer: function() {
@@ -104,7 +106,7 @@ export default {
       this.resetButton = true;
     },
     resetTimer: function() {
-      this.totalTime = (1 * 60);
+      this.totalTime = (0 * 6000);
       clearInterval(this.timer);
       this.timer = null;
       this.resetButton = false;
@@ -112,31 +114,27 @@ export default {
     padTime: function(time) {
       return (time < 10 ? '0' : '') + time;
     },
-    countdown: function() {
-      if(this.totalTime >= 1) {
-        this.totalTime--;
+    countup: function() {
+      if(this.totalTime >= 0) {
+        this.totalTime++;
       } else {
         this.totalTime = 0;
         this.resetTimer;
       }
     },
-    clearEvent(){
-      document.removeEventListener("keydown", this.eventFunc);
-      document.removeEventListener("keyup", this.eventFunc2)
-    },
   },
   created() {
     this.clearState()
-    this.gameStart()
+    // this.gameStart()
   },
   computed: {
-    minutes: function() {
-      const minutes = Math.floor(this.totalTime / 60);
-      return this.padTime(minutes);
-    },
     seconds: function() {
-      const seconds = this.totalTime - (this.minutes * 60);
+      const seconds = Math.floor(this.totalTime/100 );
       return this.padTime(seconds);
+    },
+    mseconds: function() {
+      const mseconds = this.totalTime - (this.seconds * 100);
+      return this.padTime(mseconds);
     },
   },
   mounted() {

@@ -7,6 +7,9 @@
     <div v-if="this.gameName == '1to50'">
       <one-to-fifty-standard></one-to-fifty-standard>
     </div>
+    <div v-if="this.gameName == '1toINF'">
+      <one-to-fifty-inf></one-to-fifty-inf>
+    </div>
     <div></div>
   </div>
   <div v-if="this.gameName == '오목'">
@@ -21,6 +24,7 @@
 <script>
 import OneToFiftyMain from '@/components/OneToFiftyMain.vue'
 import OneToFiftyStandard from '@/components/OneToFiftyStandard.vue'
+import OneToFiftyInf from '@/components/OneToFiftyInf.vue'
 import OmokGame from '@/components/OmokGame.vue'
 import SongQuiz from '@/components/SongQuiz.vue'
 // import RankList from '@/components/RankList.vue'
@@ -31,6 +35,7 @@ export default {
   components: {
     OneToFiftyMain,
     OneToFiftyStandard,
+    OneToFiftyInf,
     OmokGame,
     SongQuiz,
     // RankList,
